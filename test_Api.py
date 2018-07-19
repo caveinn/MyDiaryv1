@@ -15,15 +15,15 @@ class ApiTestCase(unittest.TestCase):
         self.EntryData={"title": "myentry", "content":"something that doesnt really matter happened today"}
     
     def test_User_Creation(self):
-        resp=self.client().put('/api/v1/user/', data=self.UserData)
+        resp=self.client().post('/api/v1/user/', data=self.UserData)
         self.assertEqual(resp.status_code, 201)
     
     def test_Login(self):
-        resp =self.client().post('/api/v1/user/', data=self.UserData)
+        resp =self.client().post('/api/v1/user/login')
         self.assertEqual(resp.status_code, 200)
 
     def test_Create_Entry(self):
-        resp=self.client().put('/api/v1/entry/', data=self.EntryData)
+        resp=self.client().post('/api/v1/entry/', data=self.EntryData)
         self.assertEqual(resp.status_code, 201)
 
     def test_Get_All_Entries(self):
@@ -37,6 +37,11 @@ class ApiTestCase(unittest.TestCase):
     def test_Delete_Entry(self):
         resp= self.client().delete('/api/v1/entries/1')
         self.assertEqual(resp.status_code, 200)
+    
+    def tets_Modify_Entry(self):
+        resp=self.client().put('/api/v1/entry/', data=self.EntryData)
+        self.assertEqual(resp.status_code, 200)
+
 
 
 
