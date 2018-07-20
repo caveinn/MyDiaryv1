@@ -1,6 +1,8 @@
 import unittest
 import os
 import json
+import base64
+
 #from instance.config import app_config
 from app import create_App
 
@@ -13,13 +15,17 @@ class ApiTestCase(unittest.TestCase):
         self.client= self.app.test_client 
         self.UserData=json.dumps({"username":"Jane doe", "email":"janedoe@gmail.com", "password":"sometext",})
         self.EntryData=json.dumps({"title": "myentry", "content": "something that doesnt really matter happened today"})
-    
+        
+
     def test_User_Creation(self):
         resp=self.client().post('/api/v1/users', data=self.UserData,content_type = 'application/json')
         self.assertEqual(resp.status_code, 201)
     
     def test_Login(self):
-        resp =self.client().post('/api/v1/user/login', data=self.UserData)
+        resp =self.client().get('/api/v1/login', headers = {
+                        'content-type': "application/json",
+                        'authorization': "Basic amFuZSBkb2U6MTIzNA==",
+                        })
         self.assertEqual(resp.status_code, 200)
 
     def test_Create_Entry(self):
@@ -41,6 +47,7 @@ class ApiTestCase(unittest.TestCase):
     def test_Delete_Entry(self):
         resp= self.client().delete('/api/v1/entries/1')
         self.assertEqual(resp.status_code, 204)
+        
     
     
 

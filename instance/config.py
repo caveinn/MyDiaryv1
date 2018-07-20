@@ -11,6 +11,7 @@ class Development(Config):
 
 class Testing(Config):
     '''Configuration for testing environment'''
+    WTF_CSRF_ENABLED = False
     DEBUG = True
 
 class Production(Config):

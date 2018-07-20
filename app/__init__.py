@@ -2,10 +2,13 @@
 from flask import Flask, jsonify, request , make_response
 from instance.config import app_config
 import uuid
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 #data models initialised with some files for testing
+hashed_Password=generate_password_hash("1234", method="sha256")
 entries={"1":{ "title":"example", "content":"some random stuff"}, "2":{ "titel":"sample2", "content":"some other random stuff"}}
-users={"1":{"username":"jane doe", "password":"1234", "email":"janedoe@gmail.com"}}
+users={"1":{"username":"jane doe", "password":hashed_Password, "email":"janedoe@gmail.com"}}
 
 #functions to add new items to the data models
 def add_Entries_To_Db(id,title, content):
@@ -17,7 +20,7 @@ def add_Entries_To_Db(id,title, content):
 def add_Users_To_Db(id,username, password, email):
     temp_User={}
     temp_User["username"]=username
-    temp_User["password"]=password
+    temp_User["password"]=generate_password_hash(password,method="sha256")
     temp_User["email"]=email
     users[id]=temp_User
 
@@ -27,6 +30,28 @@ def create_App(config_name):
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('../instance/config.py')
     entry_Id_Counter=0
+    
+    @app.route('/api/v1/login')
+    def login():
+        authorization=request.authorization
+        if not authorization or not authorization.username or not authorization.password:
+            response=jsonify({"message":"failed to login"})
+            response.status_code=401
+            return response
+        user=None
+        for value in users.values():
+            if value["username"]==authorization.username:
+                user=value
+        if not user:
+            response=jsonify({"message":"failed to login"})
+            response.status_code=401
+            return response
+        if check_password_hash(user["password"],authorization.password):
+            response=jsonify({"Token":"token to be genereted"})
+            return response
+        response=jsonify({"message":"failed to login"})
+        response.status.code=401
+        return response
 
     @app.route('/api/v1/users', methods=['POST'])
     def create_User():
