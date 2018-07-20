@@ -30,7 +30,14 @@ def create_App(config_name):
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('../instance/config.py')
     entry_Id_Counter=0
-    
+    @app.route('/')
+    def index():
+        '''What to see when visit site'''
+        page="<h1>This is the landing page for my api</h1 \
+                <p>You can test the various api endpoints which</p>\
+                <ul><li>/api/v1/login</li><li>/api/v1/users<li> \
+                <li>/api/v1/entries</li><li><h3>among others</li></ul>"
+        return page
     @app.route('/api/v1/login')
     def login():
         authorization=request.authorization
@@ -78,6 +85,7 @@ def create_App(config_name):
     
     @app.route('/api/v1/entries', methods=['POST'])
     def create_Entry():
+        ''''''
         data=request.get_json()
         if data:
             add_Entries_To_Db(str(uuid.uuid4()), data['title'], data['content'])
@@ -85,8 +93,10 @@ def create_App(config_name):
             response.status_code=201
             return response
         return jsonify({"message":"send data"})
+    
     @app.route('/api/v1/entries/<entriesid>', methods=["PUT"])
     def edit_Entry(entriesid):
+        '''edit a single entry'''
         data=request.get_json()
         if data:
             print(entries)
@@ -110,8 +120,5 @@ def create_App(config_name):
         response=jsonify({"message":"failed to delete "})
         response.status_code=400
         return response
-
-
-
 
     return app
