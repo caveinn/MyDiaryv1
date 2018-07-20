@@ -40,7 +40,7 @@ class ApiTestCase(unittest.TestCase):
         self.assertEqual(resp.status_code, 204)
     
     def test_Modify_Entry(self):
-        resp=self.client().put('/api/v1/entry/', data=self.EntryData)
+        resp=self.client().put('/api/v1/entry/1', data=self.EntryData)
         self.assertEqual(resp.status_code, 200)
 
 

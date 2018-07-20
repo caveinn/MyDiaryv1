@@ -74,4 +74,17 @@ def create_App(config_name):
         response.status_code=400
         return response
 
+    @app.route('/api/v1/entries/<entriesid>', methods=["PUT"])
+    def edit_Entry(entriesid):
+        data=request.get_json()
+        if data:
+          entries[entriesid]["title"]=data["title"]
+          entries[entriesid]["content"]=data["content"]
+          response=jsonify({"message":"updated succesfully"})
+          return response
+        response =jsonify({"message":"could not update"})
+        response.status_code=400
+        return response
+
+
     return app
