@@ -37,9 +37,9 @@ class ApiTestCase(unittest.TestCase):
 
     def test_Delete_Entry(self):
         resp= self.client().delete('/api/v1/entries/1')
-        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 204)
     
-    def tets_Modify_Entry(self):
+    def test_Modify_Entry(self):
         resp=self.client().put('/api/v1/entry/', data=self.EntryData)
         self.assertEqual(resp.status_code, 200)
 

@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request , make_response
 from instance.config import app_config
 import uuid
 
-#data 
+#data models initialised with some files for testing
 entries={"1":{ "title":"example", "content":"some random stuff"}}
 users={"1":{"username":"jane doe", "password":"1234", "email":"janedoe@gmail.com"}}
 
@@ -60,6 +60,17 @@ def create_App(config_name):
             response.status_code=201
             return response
         return jsonify({"message":"send data"})
-
+    
+    @app.route('/api/v1/entries/<entriesid>', methods=["DELETE"])
+    def delete_Entry(entriesid):
+        if entriesid in entries.keys():
+            print(entries.keys())
+            del entries[entriesid]
+            response=jsonify({"message":"deleted succesfully"})
+            response.status_code=204
+            return response
+        response=jsonify({"message":"failed to delete"})
+        response.status_code=400
+        return response
 
     return app

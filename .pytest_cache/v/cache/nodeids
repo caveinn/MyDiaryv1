@@ -4,5 +4,6 @@
   "test_Api.py::ApiTestCase::test_Get_All_Entries",
   "test_Api.py::ApiTestCase::test_Get_Single_Entry",
   "test_Api.py::ApiTestCase::test_Login",
+  "test_Api.py::ApiTestCase::test_Modify_Entry",
   "test_Api.py::ApiTestCase::test_User_Creation"
 ]
