@@ -1,4 +1,3 @@
 {
-  "test_Api.py::ApiTestCase::test_Login": true,
-  "test_Api.py::ApiTestCase::test_Modify_Entry": true
+  "test_Api.py::ApiTestCase::test_Login": true
 }

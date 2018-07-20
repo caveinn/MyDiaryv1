@@ -34,14 +34,15 @@ class ApiTestCase(unittest.TestCase):
     def test_Get_Single_Entry(self):
         resp= self.client().get('/api/v1/entries/1')
         self.assertEqual(resp.status_code, 200)
+    def test_Modify_Entry(self):
+        resp=self.client().put('/api/v1/entries/2', data=self.EntryData,content_type = 'application/json')
+        self.assertEqual(resp.status_code, 200)
 
     def test_Delete_Entry(self):
         resp= self.client().delete('/api/v1/entries/1')
         self.assertEqual(resp.status_code, 204)
     
-    def test_Modify_Entry(self):
-        resp=self.client().put('/api/v1/entry/1', data=self.EntryData)
-        self.assertEqual(resp.status_code, 200)
+    
 
 
 

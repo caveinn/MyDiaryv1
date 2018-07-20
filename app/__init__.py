@@ -4,7 +4,7 @@ from instance.config import app_config
 import uuid
 
 #data models initialised with some files for testing
-entries={"1":{ "title":"example", "content":"some random stuff"}}
+entries={"1":{ "title":"example", "content":"some random stuff"}, "2":{ "titel":"sample2", "content":"some other random stuff"}}
 users={"1":{"username":"jane doe", "password":"1234", "email":"janedoe@gmail.com"}}
 
 #functions to add new items to the data models
@@ -60,6 +60,18 @@ def create_App(config_name):
             response.status_code=201
             return response
         return jsonify({"message":"send data"})
+    @app.route('/api/v1/entries/<entriesid>', methods=["PUT"])
+    def edit_Entry(entriesid):
+        data=request.get_json()
+        if data:
+            print(entries)
+            entries[entriesid]["title"]=data["title"]
+            entries[entriesid]["content"]=data["content"]
+            response=jsonify({"message":"updated succesfully"})
+            return response
+        response =jsonify({"message":"could not update"})
+        response.status_code=400
+        return response
     
     @app.route('/api/v1/entries/<entriesid>', methods=["DELETE"])
     def delete_Entry(entriesid):
@@ -74,17 +86,7 @@ def create_App(config_name):
         response.status_code=400
         return response
 
-    @app.route('/api/v1/entries/<entriesid>', methods=["PUT"])
-    def edit_Entry(entriesid):
-        data=request.get_json()
-        if data:
-          entries[entriesid]["title"]=data["title"]
-          entries[entriesid]["content"]=data["content"]
-          response=jsonify({"message":"updated succesfully"})
-          return response
-        response =jsonify({"message":"could not update"})
-        response.status_code=400
-        return response
+
 
 
     return app
