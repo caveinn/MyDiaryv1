@@ -63,13 +63,14 @@ def create_App(config_name):
     
     @app.route('/api/v1/entries/<entriesid>', methods=["DELETE"])
     def delete_Entry(entriesid):
+        '''deliting a single entry'''
         if entriesid in entries.keys():
             print(entries.keys())
             del entries[entriesid]
             response=jsonify({"message":"deleted succesfully"})
             response.status_code=204
             return response
-        response=jsonify({"message":"failed to delete"})
+        response=jsonify({"message":"failed to delete "})
         response.status_code=400
         return response
 
