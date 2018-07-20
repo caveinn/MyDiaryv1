@@ -1,5 +1,4 @@
 {
-  "test_Api.py::ApiTestCase::test_Create_Entry": true,
   "test_Api.py::ApiTestCase::test_Delete_Entry": true,
   "test_Api.py::ApiTestCase::test_Login": true,
   "test_Api.py::ApiTestCase::test_User_Creation": true
