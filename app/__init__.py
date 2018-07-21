@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 #data models initialised with some files for testing
 hashed_Password=generate_password_hash("1234", method="sha256")
-entries={"1":{ "title":"example", "content":"some random stuff"}, "2":{ "titel":"sample2", "content":"some other random stuff"}}
+entries={"1":{ "title":"example", "content":"some random stuff"}, "2":{ "title":"sample2", "content":"some other random stuff"}}
 users={"1":{"username":"jane doe", "password":hashed_Password, "email":"janedoe@gmail.com"}}
 
 #functions to add new items to the data models
