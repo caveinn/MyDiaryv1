@@ -29,7 +29,7 @@ To run this project you should follow the following steps:
 	1. for the application run   
 	`python run.py`  
 
-If you ran the aplicatio you can test the various api end points sing post man. The appi endpoints are  
+If you ran the aplication you can test the various api end points sing postman. The appi endpoints are  
 
 |Endpont|functionality|contraints(requirements)|
 |-------|-------------|----------|
