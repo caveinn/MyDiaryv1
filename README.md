@@ -2,11 +2,11 @@ This is an online diary where users can pen down their thoughts
 
 **Travis CI badge**
 
-[![Coverage Status](https://coveralls.io/repos/github/caveinn/MyDiaryv1/badge.svg?branch=develop)](https://coveralls.io/github/caveinn/MyDiaryv1?branch=develop)
+[![Build Status](https://travis-ci.org/caveinn/MyDiaryv1.svg?branch=develop)](https://travis-ci.org/caveinn/MyDiaryv1)
 
 **Coverall badge**
 
-[![Coverage Status](https://coveralls.io/repos/github/caveinn/MyDiaryv1/badge.svg)](https://coveralls.io/github/caveinn/MyDiaryv1)
+[![Coverage Status](https://coveralls.io/repos/github/caveinn/MyDiaryv1/badge.svg?branch=develop)](https://coveralls.io/github/caveinn/MyDiaryv1?branch=develop)
 
 To run this project you should follow the following steps:  
 
