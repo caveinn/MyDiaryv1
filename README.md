@@ -6,7 +6,7 @@ This is an online diary where users can pen down their thoughts
 
 **Coverall badge**
 
-[![Coverage Status](https://coveralls.io/repos/github/caveinn/MyDiaryv1/badge.svg?branch=master)](https://coveralls.io/github/caveinn/MyDiaryv1?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/caveinn/MyDiaryv1/badge.svg)](https://coveralls.io/github/caveinn/MyDiaryv1)
 
 To run this project you should follow the following steps:  
 
