@@ -8,6 +8,9 @@ install:
 
 script: 
   - python -m pytest 
+  - pip install pytest-cov
+  - pip install coveralls
 
 after_success:
   - coveralls
+  

@@ -35,7 +35,7 @@ def create_App(config_name):
         '''What to see when visit site'''
         page="<h1>This is the landing page for my api</h1 \
                 <p>You can test the various api endpoints which</p>\
-                <ul><li>/api/v1/login</li><li>/api/v1/users<li> \
+                <ul><li>/api/v1/login</li><li>/api/v1/users</li> \
                 <li>/api/v1/entries</li><li><h3>among others</li></ul>"
         return page
     @app.route('/api/v1/login')
