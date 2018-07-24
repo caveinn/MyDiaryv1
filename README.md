@@ -15,24 +15,24 @@ This is an online diary where users can pen down their thoughts
 To run this project you should follow the following steps:  
 
 1. Cretate  a virual enviroment with the command  
-`virtualenv -p python3 venv  
+`$ virtualenv -p python3 venv  
 
 1. Activate the venv with the command     
-`source venv/bin/activate`
+`$ source venv/bin/activate`
 
 1. Install git  
 1. clone this repo  
-`git clone "https://github.com/caveinn/MyDiaryv1.git"`
+`$ git clone "https://github.com/caveinn/MyDiaryv1.git"`
 
 1. install requirements      
-`pip install -r requirements.txt`
+`$ pip install -r requirements.txt`
 
 1. now we are ready to run. 
 	1. for tests run  
-	`python test_Api.py`   
+	`$ python test_Api.py`   
 	1. for the application run  
-	`$ export APP_SETTINGS="development`    
-	`python run.py`  
+	`$ export APP_SETTINGS="development"`    
+	`$ python run.py`  
 
 If you ran the aplication you can test the various api end points sing postman. The appi endpoints are  
 
