@@ -30,7 +30,8 @@ To run this project you should follow the following steps:
 1. now we are ready to run. 
 	1. for tests run  
 	`python test_Api.py`   
-	1. for the application run   
+	1. for the application run 
+	`$ export APP_SETTINGS="development`    
 	`python run.py`  
 
 If you ran the aplication you can test the various api end points sing postman. The appi endpoints are  
