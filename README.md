@@ -30,7 +30,7 @@ To run this project you should follow the following steps:
 1. now we are ready to run. 
 	1. for tests run  
 	`python test_Api.py`   
-	1. for the application run 
+	1. for the application run  
 	`$ export APP_SETTINGS="development`    
 	`python run.py`  
 
@@ -38,7 +38,6 @@ If you ran the aplication you can test the various api end points sing postman. 
 
 |Endpont|functionality|contraints(requirements)|
 |-------|-------------|----------|
-|post /api/v1/users | create a user |requires user data | 
 |get  /api/v1/login | login |requires authentication |
 |get /api/v1/entries| get all the entries| none |
 |get /api/v1/entries/<entryid>|return a single entry| entry id |
