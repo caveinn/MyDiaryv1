@@ -11,13 +11,13 @@ entries={"1":{ "title":"example", "content":"some random stuff"}, "2":{ "title":
 users={"1":{"username":"jane doe", "password":hashed_Password, "email":"janedoe@gmail.com"}}
 
 #functions to add new items to the data models
-def add_Entries_To_Db(id,title, content):
+def add_Entries(id,title, content):
     temp_Entry={}
     temp_Entry["title"]=title
     temp_Entry["content"]=content
     entries[id]=temp_Entry
 
-def add_Users_To_Db(id,username, password, email):
+def add_Users(id,username, password, email):
     temp_User={}
     temp_User["username"]=username
     temp_User["password"]=generate_password_hash(password,method="sha256")
@@ -30,14 +30,7 @@ def create_App(config_name):
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('../instance/config.py')
     entry_Id_Counter=0
-    @app.route('/')
-    def index():
-        '''What to see when visit site'''
-        page="<h1>This is the landing page for my api</h1 \
-                <p>You can test the various api endpoints which</p>\
-                <ul><li>/api/v1/login</li><li>/api/v1/users</li> \
-                <li>/api/v1/entries</li><li><h3>among others</li></ul>"
-        return page
+    
     @app.route('/api/v1/login')
     def login():
         authorization=request.authorization
@@ -65,7 +58,7 @@ def create_App(config_name):
         '''Creating a new user'''
         data=request.get_json()
         if data:
-            add_Users_To_Db(str(uuid.uuid4()), data['username'], data['password'], data['email'])
+            add_Users(str(uuid.uuid4()), data['username'], data['password'], data['email'])
             response=jsonify({"message": "entry created succesfully"})
             response.status_code=201
             return response
@@ -88,7 +81,7 @@ def create_App(config_name):
         ''''''
         data=request.get_json()
         if data:
-            add_Entries_To_Db(str(uuid.uuid4()), data['title'], data['content'])
+            add_Entries(str(uuid.uuid4()), data['title'], data['content'])
             response=jsonify({"message": "entry created succesfully"})
             response.status_code=201
             return response
