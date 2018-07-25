@@ -1,11 +1,10 @@
 import unittest
 import json
 
-#from instance.config import app_config
 from app import create_App
 
 class ApiTestCase(unittest.TestCase):
-    '''This is a class for Api testcase'''
+    '''Check if various endpoints work well'''
 
     def setUp(self):
         '''Initilise and setup the app'''
@@ -20,27 +19,33 @@ class ApiTestCase(unittest.TestCase):
                                 "title": "myentry", 
                                 "content": "something that doesnt really matter happened today"
                                 })
+    
     def test_User_Creation(self):
-        '''Test the creation of users'''
+        '''check if a user is created successfully'''
         resp=self.client().post('/api/v1/users', data=self.UserData,content_type = 'application/json')
         self.assertEqual(resp.status_code, 201)
     
     def test_Login(self):
-        '''Test user login endpoint'''
+        '''checking if user gets a token'''
         resp =self.client().get('/api/v1/login', headers = {
                         'content-type': "application/json",
                         'authorization': "Basic amFuZSBkb2U6MTIzNA==",
                         })
         self.assertEqual(resp.status_code, 200)
 
+    def test_Login_No_Auth(self):
+        '''checking if user gets a token'''
+        resp =self.client().get('/api/v1/login')
+        self.assertEqual(resp.status_code, 401)
+
     def test_Create_Entry(self):
-        '''Test creation of a new entry'''
+        '''Checking that an entry was created successfully'''
         resp=self.client().post('/api/v1/entries', data=self.EntryData,content_type = 'application/json')
         print(self.EntryData)
         self.assertEqual(resp.status_code, 201)
 
     def test_Get_All_Entries(self):
-        '''Test if you can get all entries'''
+        '''check if all entries are returned'''
         resp= self.client().get('/api/v1/entries')
         self.assertEqual(resp.status_code, 200)
 
@@ -50,14 +55,25 @@ class ApiTestCase(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
     
     def test_Modify_Entry(self):
-        '''Teat for Modifying an entry'''
+        '''check that entry was modified succesfully'''
         resp=self.client().put('/api/v1/entries/2', data=self.EntryData,content_type = 'application/json')
         self.assertEqual(resp.status_code, 200)
 
+    def test_Modify_Entry_Wrong_Id(self):
+        '''check that entry was modified succesfully'''
+        resp=self.client().put('/api/v1/entries/2')
+        self.assertEqual(resp.status_code, 400)
+
     def test_Delete_Entry(self):
-        '''Test for deleting an entry'''
+        '''check that entyr was deleted succesfully'''
         resp= self.client().delete('/api/v1/entries/1')
         self.assertEqual(resp.status_code, 204)
+    #when user enters wron id
+    def test_Delete_Entry_Wrong_Id(self):
+        '''check that entyr id was not found'''
+        resp= self.client().delete('/api/v1/entries/1232')
+        self.assertEqual(resp.status_code, 400)
+
 
 if __name__ == '__main__':
     unittest.main()

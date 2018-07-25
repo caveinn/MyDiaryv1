@@ -1,9 +1,12 @@
 [
   "test_Api.py::ApiTestCase::test_Create_Entry",
   "test_Api.py::ApiTestCase::test_Delete_Entry",
+  "test_Api.py::ApiTestCase::test_Delete_Entry_Wrong_Id",
   "test_Api.py::ApiTestCase::test_Get_All_Entries",
   "test_Api.py::ApiTestCase::test_Get_Single_Entry",
   "test_Api.py::ApiTestCase::test_Login",
+  "test_Api.py::ApiTestCase::test_Login_No_Auth",
   "test_Api.py::ApiTestCase::test_Modify_Entry",
+  "test_Api.py::ApiTestCase::test_Modify_Entry_Wrong_Id",
   "test_Api.py::ApiTestCase::test_User_Creation"
 ]
